@@ -1,21 +1,19 @@
 ﻿using System;
-using QuickMark;
+using MediCare;
+
 
 class Program
 {
     static void Main()
     {
-        QuickMarks obj = new QuickMarks();
+        PatientBill billObj = new PatientBill();
         int choice = 0;
 
         do
         {
-            Console.WriteLine("\n================== QuickMark Traders ==================");
-            Console.WriteLine("1. Create New Transaction (Enter Purchase & Selling Details)");
-            Console.WriteLine("2. View Last Transaction");
-            Console.WriteLine("3. Calculate Profit/Loss (Recompute & Print)");
-            Console.WriteLine("4. Exit");
-            Console.Write("Enter your option: ");
+            Console.WriteLine("\n=========== MediCare Billing System ===========");
+            billObj.Menu();
+            Console.Write("Enter your choice: ");
 
             if (!int.TryParse(Console.ReadLine(), out choice))
             {
@@ -26,15 +24,15 @@ class Program
             switch (choice)
             {
                 case 1:
-                    obj.CreateTransaction();
+                    billObj.Create();
                     break;
 
                 case 2:
-                    obj.ViewTransaction();
+                    billObj.View();
                     break;
 
                 case 3:
-                    obj.CalculateProfitLoss();
+                    billObj.Clear();
                     break;
 
                 case 4:
@@ -42,7 +40,7 @@ class Program
                     break;
 
                 default:
-                    Console.WriteLine("Invalid menu option. Please try again.");
+                    Console.WriteLine("Invalid choice. Please select between 1 and 4.");
                     break;
             }
 
