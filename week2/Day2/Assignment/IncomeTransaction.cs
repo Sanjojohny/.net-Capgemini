@@ -1,8 +1,16 @@
 using System;
 
+
 namespace DigitalPettyCashLe;
 
-public class IncomeTransaction
+class IncomeTransaction:Transacton
 {
-
+    public string Source{get;set;}
+    public  override string GetSummary()
+    {
+        return "Amount" + Amount + "Source:" + Source;
+               
+         
+    }
+    
 }
