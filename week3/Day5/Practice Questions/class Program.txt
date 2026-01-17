@@ -1,0 +1,86 @@
+class Program
+    {
+        public static List<Movie> MovieList = new List<Movie>();
+
+        // Add movie
+        public static void AddMovie(string movieDetails)
+        {
+            string[] data = movieDetails.Split(',');
+
+            Movie m = new Movie();
+            m.Title = data[0];
+            m.Artist = data[1];
+            m.Genre = data[2];
+            m.Rating = int.Parse(data[3]);
+
+            MovieList.Add(m);
+        }
+
+        // View movies by genre
+        public static List<Movie> ViewMoviesByGenre(string genre)
+        {
+            var result = MovieList.Where(a => a.Genre == genre).ToList();
+            return result;
+        }
+
+        // View movies by rating
+        public static List<Movie> ViewMoviesByRating()
+        {
+            var result = MovieList.OrderBy(a => a.Rating).ToList();
+            return result;
+        }
+
+        // Main method
+        public static void Main()
+        {
+            Console.WriteLine("Enter the number of movies you need to add");
+            int a = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < a; i++)
+            {
+                Console.WriteLine("Enter the movie details separated by comma");
+                string input = Console.ReadLine();
+                AddMovie(input);
+            }
+
+            Console.WriteLine("Enter the genre you want to search");
+            string genre = Console.ReadLine();
+
+            var res = ViewMoviesByGenre(genre);
+
+            if (res.Count == 0)
+            {
+                Console.WriteLine("No movies found");
+            }
+            else
+            {
+                foreach (var item in res)
+                {
+               		Console.WriteLine($"{item.Title},{item.Artist},{item.Genre},{item.Rating}");
+
+                }
+            }
+
+            Console.WriteLine("Movies sorted by rating:");
+            var result = ViewMoviesByRating();
+
+            foreach (Movie movie in result)
+            {
+                	Console.WriteLine($"{item.Title},{item.Artist},{item.Genre},{item.Rating}");
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
